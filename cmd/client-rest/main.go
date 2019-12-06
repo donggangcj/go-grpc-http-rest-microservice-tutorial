@@ -54,7 +54,7 @@ func main() {
 	}
 
 	// Call Read
-	resp, err = http.Get(fmt.Sprintf("%s%s/%s", *address, v1/todo", created.ID))
+	resp, err = http.Get(fmt.Sprintf("%s%s/%s", *address, "/v1/todo", created.ID))
 	if err != nil {
 		log.Fatalf("failed to call Read method: %v", err)
 	}
