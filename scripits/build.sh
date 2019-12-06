@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 
+# KUBE_ROOT=$(dirname "${BASH_SOURCE[0]}")/..
 OUTPUT=_output
 ROOTPATH="/Users/donggang/Documents/Code/blog/go-grpc-http-rest-microservice-tutorial/"
 
