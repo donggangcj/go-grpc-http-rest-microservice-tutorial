@@ -4,6 +4,7 @@ import (
 	"context"
 	v1 "github.com/donggangcj/go-grpc-http-rest-microservice-tutorial/pkg/api/v1"
 	"github.com/donggangcj/go-grpc-http-rest-microservice-tutorial/pkg/logger"
+	"github.com/donggangcj/go-grpc-http-rest-microservice-tutorial/pkg/protocol/rest/middleware"
 	"github.com/grpc-ecosystem/grpc-gateway/runtime"
 	"go.uber.org/zap"
 	"google.golang.org/grpc"
@@ -26,7 +27,7 @@ func RunServer(ctx context.Context, grpcPort, httpPort string) error {
 
 	srv := &http.Server{
 		Addr:    ":" + httpPort,
-		Handler: mux,
+		Handler: middleware.AddRequestID(middleware.AddLogger(logger.Log, mux)),
 	}
 
 	// graceful shutdown

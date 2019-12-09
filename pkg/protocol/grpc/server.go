@@ -4,6 +4,7 @@ import (
 	"context"
 	v1 "github.com/donggangcj/go-grpc-http-rest-microservice-tutorial/pkg/api/v1"
 	"github.com/donggangcj/go-grpc-http-rest-microservice-tutorial/pkg/logger"
+	"github.com/donggangcj/go-grpc-http-rest-microservice-tutorial/pkg/protocol/grpc/middleware"
 	"google.golang.org/grpc"
 	"net"
 	"os"
@@ -17,8 +18,14 @@ func RunServer(ctx context.Context, v1API v1.ToDoServiceServer, port string) err
 		return err
 	}
 
+	// gRPC server statup option
+	var opts []grpc.ServerOption
+
+	// add middleware
+	opts = middleware.AddLogging(logger.Log, opts)
+
 	// register service
-	server := grpc.NewServer()
+	server := grpc.NewServer(opts...)
 	v1.RegisterToDoServiceServer(server, v1API)
 
 	// graceful shutdown
