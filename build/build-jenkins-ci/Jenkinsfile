@@ -9,7 +9,7 @@ pipeline {
             }
         }
         environment {
-            HOME=${env.WORKSPACE}
+            HOME = "${env.WORKSPACE}"
         }
         steps {
             sh 'go test ./...'
