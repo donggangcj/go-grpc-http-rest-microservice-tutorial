@@ -1,16 +1,19 @@
 pipeline {
-   agent none
-   stages {
-     stage('test') {
-       agent {
-         docker {
-             image 'golang'
-             label 'Slave-01'
-         }
-       }
-       steps {
-             sh 'go test ./...'
-       }
+    agent none
+    stages {
+        stage('test') {
+        agent {
+            docker {
+                image 'golang'
+                label 'Slave-01'
+            }
+        }
+        environment {
+            HOME=${env.WORKSPACE}
+        }
+        steps {
+            sh 'go test ./...'
+        }
      }
      stage('build') {
        agent {
