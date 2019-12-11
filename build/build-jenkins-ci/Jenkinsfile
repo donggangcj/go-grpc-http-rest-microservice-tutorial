@@ -1,5 +1,8 @@
 pipeline {
     agent none
+    environment {
+        HOME = "${env.WORKSPACE}"
+    }
     stages {
         stage('test') {
         agent {
@@ -8,19 +11,19 @@ pipeline {
                 label 'Slave-01'
             }
         }
-        environment {
-            HOME = "${env.WORKSPACE}"
-        }
         steps {
             sh 'go test ./...'
         }
      }
-     stage('build') {
+     stage('build & push') {
        agent {
            label 'Slave-01'
        }
        steps{
-         sh  'docker build -t grpc-demo .'
+         sh 'IMAGE_VERSION=`date '+%y%m%d%H%M'`+B${BUILD_NUMBER}'
+         sh 'IMAGE_TAG=192.168.5.82/grpc/grpc-demo:v0.0.${IMAGE_VERSION}'
+         sh  'docker build -t IMAGE_TAG -f $HOME/build-image/Dockerfile .'
+         sh 'docker push IMAGE_TAG'
        }
      }
    }
