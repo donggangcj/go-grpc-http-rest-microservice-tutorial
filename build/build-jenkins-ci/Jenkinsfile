@@ -12,7 +12,7 @@ pipeline {
             }
         }
         steps {
-            sh 'go test ./...'
+            sh 'GOFLAGS=-mod=vendor go test ./...'
         }
      }
      stage('build & push') {
