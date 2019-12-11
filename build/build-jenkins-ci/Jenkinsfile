@@ -20,7 +20,7 @@ pipeline {
            label 'Slave-01'
        }
        steps{
-         sh 'IMAGE_VERSION=`date '+%y%m%d%H%M'`+B${BUILD_NUMBER}'
+         sh 'IMAGE_VERSION=$(date +%y%m%d%H%M)+B${BUILD_NUMBER}'
          sh 'IMAGE_TAG=192.168.5.82/grpc/grpc-demo:v0.0.${IMAGE_VERSION}'
          sh  'docker build -t IMAGE_TAG -f $HOME/build-image/Dockerfile .'
          sh 'docker push IMAGE_TAG'
