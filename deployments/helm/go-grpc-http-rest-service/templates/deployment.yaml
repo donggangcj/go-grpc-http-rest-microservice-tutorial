@@ -28,8 +28,11 @@ spec:
           image: "{{ .Values.image.repository }}:{{ .Chart.AppVersion }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           ports:
+            - name: tcp
+              containerPort: 8080
+              protocol: TCP
             - name: http
-              containerPort: 80
+              containerPort: 9090
               protocol: TCP
           livenessProbe:
             httpGet:

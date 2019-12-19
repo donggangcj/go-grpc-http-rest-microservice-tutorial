@@ -49,6 +49,8 @@ cscope.*
 network_closure.sh
 
 
+# temp dirctionary
+temp/
 
 
 

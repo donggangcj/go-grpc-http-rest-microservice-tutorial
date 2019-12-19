@@ -28,4 +28,3 @@ docker push ${IMAGE_TAG}'''
   environment {
     HOME = "${env.WORKSPACE}"
   }
-}

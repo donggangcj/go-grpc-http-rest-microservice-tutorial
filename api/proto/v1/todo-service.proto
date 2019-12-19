@@ -114,7 +114,7 @@ message DeleteRequest{
 message DeleteResponse{
     // API versioning: it is my best practice to specify version explicitly
     string api = 1;
-
+˜
     // Contains number of entities have beed deleted
     // Equals 1 in case of succesfull delete
     int64 deleted = 2;

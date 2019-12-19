@@ -1,6 +1,6 @@
 apiVersion: v2
 name: go-grpc-http-rest-service
-description: A tutorial about devleop Go GRPC microservice
+description: A grpc service sample chart
 
 # A chart can be either an 'application' or a 'library' chart.
 #
